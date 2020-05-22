@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.GameMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Game">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  
+  <delete id="deleteGameById" parameterType="java.lang.String">
+    delete from game
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="addGame" parameterType="com.example.demo.entity.Game">
+    insert into game (id, name, type
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateById" parameterType="com.example.demo.entity.Game">
+    update game
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllGameList" resultMap="BaseResultMap">
+    select id, name, type
+    from game
+  </select>
+
+  <select id="selectGameById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id, name, type
+    from game
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

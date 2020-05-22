@@ -1,0 +1,31 @@
+mybatis:
+  mapper-locations: classpath:mybatis/mappers/*.xml
+mybatis-plus:
+  configuration:
+    call-setters-on-nulls: true
+    jdbc-type-for-null: varchar
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      capital-mode: true
+      id-type: input
+      table-underline: true
+  mapper-locations: classpath:mybatis/mappers/*Mapper.xml
+  type-aliases-package: com.example.demo.entity
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 5
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    password: '!QAZ3edc'
+    url: jdbc:mysql://47.102.84.16:3306/mmall
+    username: root
+logging:
+  config: classpath:logback/logback-spring-${spring.profiles.active}.xml
