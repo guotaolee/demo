@@ -1,5 +1,7 @@
+#mybatis生成的mapper文件目录
 mybatis:
   mapper-locations: classpath:mybatis/mappers/*.xml
+#mybatis插件
 mybatis-plus:
   configuration:
     call-setters-on-nulls: true
@@ -13,11 +15,13 @@ mybatis-plus:
       table-underline: true
   mapper-locations: classpath:mybatis/mappers/*Mapper.xml
   type-aliases-package: com.example.demo.entity
+#服务端口，及编码格式
 server:
   port: 8090
   tomcat:
     uri-encoding: UTF-8
 spring:
+  #数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initial-size: 5
@@ -27,5 +31,25 @@ spring:
     password: '!QAZ3edc'
     url: jdbc:mysql://47.102.84.16:3306/mmall
     username: root
+  #kafka
+  kafka:
+    bootstrap-servers: 47.102.84.16:9092
+    consumer:
+      #指定默认消费者group id
+      group-id: 0
+      auto-commit-interval: 100
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      # 指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      # 每次批量发送消息的数量
+      batch-size: 65536
+      buffer-memory: 524288
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 0
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 logging:
   config: classpath:logback/logback-spring-${spring.profiles.active}.xml
