@@ -27,3 +27,8 @@ spring:
     password: xxy
     url: jdbc:mysql://127.0.0.1:3306/mmall
     username: root
+###persion类属性注入
+persion:
+ lastName: hello
+ age: 18
+ boss: false
